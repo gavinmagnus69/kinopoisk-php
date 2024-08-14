@@ -19,7 +19,7 @@
             $routes = $this->getRoutes();
 
             foreach($routes as $route){
-                $this->routes[$route->getMethod()][$route->getUri()] = $route->getAction();
+                $this->routes[$route->getMethod()][$route->getUri()] = $route;
             }
         }
 
@@ -32,8 +32,18 @@
                 $this->notFound();
                 return;
             }
-            
-            $route();
+
+            if(is_array($route->getAction())){
+                [$controller, $action] = $route->getAction();
+
+                // dd($controller, $action);
+                $controller = new $controller();
+
+                call_user_func([$controller, $action]);
+            } else{
+                call_user_func($route->getAction());
+            }
+
         }
 
         private function notFound(){
