@@ -1,5 +1,5 @@
 <?php
-    use App\Router\Route;
+    use App\Kernel\Router\Route;
     use App\Controllers\HomeController;
     use App\Controllers\MovieController;
     return [
