@@ -1,12 +1,14 @@
 <?php
-    namespace App\Controllers;
 
+namespace App\Controllers;
 
-    class MovieController{
-        public function index(): void {
-            include_once APP_PATH."/views/pages/movies.php";
-        }
-    };
+use App\Kernel\Controller\Controller;
+use App\Kernel\View\View;
 
-
-?>
+class MovieController extends Controller
+{
+    public function index(): void
+    {
+        $this->view('movies');
+    }
+};
