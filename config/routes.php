@@ -10,5 +10,4 @@ return [
     Route::get('/admin/movies/add', [MovieController::class, 'add']),
     Route::post('/admin/movies/add', [MovieController::class, 'store']),
 
-    
 ];

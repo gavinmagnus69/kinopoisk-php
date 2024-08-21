@@ -2,7 +2,9 @@
 
 namespace App\Kernel\Router;
 
+use App\Kernel\Http\Redirect;
 use App\Kernel\Http\Request;
+use App\Kernel\Session\Session;
 use App\Kernel\View\View;
 
 class Router
@@ -13,12 +15,20 @@ class Router
     ];
 
     private View $view;
+
     private Request $request;
 
-    public function __construct(View $view, Request $request)
+    private Redirect $redirect;
+
+    private Session $session;
+
+    public function __construct(View $view, Request $request,
+        Redirect $redirect, Session $session)
     {
         $this->request = $request;
         $this->view = $view;
+        $this->redirect = $redirect;
+        $this->session = $session;
         $this->initRoutes();
 
     }
@@ -51,6 +61,8 @@ class Router
             $controller = new $controller;
             call_user_func([$controller, 'setView'], $this->view);
             call_user_func([$controller, 'setRequest'], $this->request);
+            call_user_func([$controller, 'setRedirect'], $this->redirect);
+            call_user_func([$controller, 'setSession'], $this->session);
 
             call_user_func([$controller, $action]);
 
@@ -74,6 +86,7 @@ class Router
         }
 
         $tmp = $this->routes[$method][$uri];
+
         // $tmp();
         return $this->routes[$method][$uri];
     }

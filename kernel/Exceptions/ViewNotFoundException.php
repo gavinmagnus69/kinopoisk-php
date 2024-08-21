@@ -1,10 +1,5 @@
 <?php
 
-    namespace App\Kernel\Exceptions;
+namespace App\Kernel\Exceptions;
 
-    class ViewNotFoundException extends \Exception{
-        
-
-    };
-
-?>
+class ViewNotFoundException extends \Exception {}
