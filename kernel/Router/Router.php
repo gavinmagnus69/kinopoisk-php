@@ -3,27 +3,31 @@
 namespace App\Kernel\Router;
 
 use App\Kernel\Http\Redirect;
+use App\Kernel\Http\RedirectInterface;
 use App\Kernel\Http\Request;
+use App\Kernel\Http\RequestInterface;
 use App\Kernel\Session\Session;
+use App\Kernel\Session\SessionInterface;
 use App\Kernel\View\View;
+use App\Kernel\View\ViewInterface;
 
-class Router
+class Router implements RouterInterface
 {
     private array $routes = [
         'GET' => [],
         'POST' => [],
     ];
 
-    private View $view;
+    private ViewInterface $view;
 
-    private Request $request;
+    private RequestInterface $request;
 
-    private Redirect $redirect;
+    private RedirectInterface $redirect;
 
-    private Session $session;
+    private SessionInterface $session;
 
-    public function __construct(View $view, Request $request,
-        Redirect $redirect, Session $session)
+    public function __construct(ViewInterface $view, RequestInterface $request,
+        RedirectInterface $redirect, SessionInterface $session)
     {
         $this->request = $request;
         $this->view = $view;
