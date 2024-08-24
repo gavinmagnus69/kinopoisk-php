@@ -2,9 +2,7 @@
 
 namespace App\Kernel\Http;
 
-interface RedirectInterface {
-
+interface RedirectInterface
+{
     public function to(string $url);
-};
-
-?>
+}

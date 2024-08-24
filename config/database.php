@@ -7,7 +7,5 @@ return [
     'database' => 'movie_db',
     'username' => 'root',
     'password' => '',
-    'charset' => 'utf8'
+    'charset' => 'utf8',
 ];
-
-?>

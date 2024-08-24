@@ -2,11 +2,10 @@
 
 namespace App\Kernel\Http;
 
-use App\Kernel\Validator\Validator;
 use App\Kernel\Validator\ValidatorInterface;
 
-interface RequestInterface {
-
+interface RequestInterface
+{
     public static function createFromGlobals(): static;
 
     public function uri(): string;
@@ -19,6 +18,5 @@ interface RequestInterface {
 
     public function method(): string;
 
-};
-
-?>
+    public function input(string $key, $default = null): mixed;
+}

@@ -2,8 +2,7 @@
 
 namespace App\Kernel\Router;
 
-interface RouterInterface {
+interface RouterInterface
+{
     public function dispatch(string $uri, string $method): void;
-    
-};
-?>
+}
