@@ -2,6 +2,7 @@
 
 namespace App\Kernel\Router;
 
+use App\Kernel\Auth\AuthInterface;
 use App\Kernel\Database\DatabaseInterface;
 use App\Kernel\Http\RedirectInterface;
 use App\Kernel\Http\RequestInterface;
@@ -25,9 +26,19 @@ class Router implements RouterInterface
 
     private DatabaseInterface $database;
 
-    public function __construct(ViewInterface $view, RequestInterface $request,
-        RedirectInterface $redirect, SessionInterface $session, DatabaseInterface $database)
+    private AuthInterface $auth;
+
+    public function __construct(
+        ViewInterface $view,
+         RequestInterface $request,
+        RedirectInterface $redirect,
+         SessionInterface $session,
+          DatabaseInterface $database,
+          AuthInterface $auth
+          )
     {
+
+        $this->auth = $auth;
         $this->database = $database;
         $this->request = $request;
         $this->view = $view;
@@ -68,6 +79,7 @@ class Router implements RouterInterface
             call_user_func([$controller, 'setRedirect'], $this->redirect);
             call_user_func([$controller, 'setSession'], $this->session);
             call_user_func([$controller, 'setDatabase'], $this->database);
+            call_user_func([$controller, 'setAuth'], $this->auth);
 
             call_user_func([$controller, $action]);
 

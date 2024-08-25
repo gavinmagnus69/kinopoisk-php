@@ -24,6 +24,26 @@ class Database implements DatabaseInterface
         // $this->connect();
     }
 
+    public function first(string $table, array $conditions = []): ?array {
+
+        $where = '';
+
+        if(count($conditions) > 0){
+            $where = implode(' AND ', array_map(fn ($field) => "$field = ".$conditions[$field], array_keys($conditions)));
+        }
+
+        
+        $sql = "SELECT * FROM $table WHERE $where LIMIT 1";
+        
+        dd($sql);
+
+        $result = mysqli_query($this->connection, $sql);
+
+        dd($result);
+        return $result;
+    }   
+
+
     public function insert(string $table, array $data): int|false
     {
 
