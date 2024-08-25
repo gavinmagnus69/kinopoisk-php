@@ -64,6 +64,7 @@ class Validator implements ValidatorInterface
                 if (! filter_var($value, FILTER_VALIDATE_EMAIL)) {
                     return "Filed $key must be a valid email address";
                 }
+                break;
             case 'confirmed':
                 if ($value !== $this->data["{$key}_confirmation"]) {
                     return "Filed $key must be confirmed";
