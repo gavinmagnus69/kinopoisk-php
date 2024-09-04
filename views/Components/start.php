@@ -7,6 +7,6 @@
     <link rel="stylesheet" href="/mein/public/assets/css/app.css">
 </head>
 <body>
-    <h1>nigga</h1>
+<?php $view->component('header'); ?>
 </body>
 </html>

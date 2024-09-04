@@ -2,6 +2,7 @@
 
 namespace App\Kernel\Container;
 
+use App\Kernel\Auth\Auth;
 use App\Kernel\Auth\AuthInterface;
 use App\Kernel\Config\Config;
 use App\Kernel\Config\ConfigInterface;
@@ -19,7 +20,6 @@ use App\Kernel\Validator\Validator;
 use App\Kernel\Validator\ValidatorInterface;
 use App\Kernel\View\View;
 use App\Kernel\View\ViewInterface;
-use App\Kernel\Auth\Auth;
 
 class Container
 {
@@ -54,26 +54,26 @@ class Container
         $this->redirect = new Redirect;
 
         $this->session = new Session;
-
-        $this->view = new View($this->session);
-
+        
         $this->validator = new Validator;
-
+        
         $this->request->setValidator($this->validator);
-
+        
         $this->config = new Config;
-
+        
         $this->database = new Database($this->config);
-
-        $this->auth = new Auth($this->database, $this->session);
+        
+        $this->auth = new Auth($this->database, $this->session, $this->config);
+        
+        $this->view = new View($this->session, $this->auth);
 
         $this->router = new Router(
             $this->view,
-             $this->request,
-              $this->redirect,
-               $this->session,
-                $this->database,
-                 $this->auth
+            $this->request,
+            $this->redirect,
+            $this->session,
+            $this->database,
+            $this->auth
         );
 
     }

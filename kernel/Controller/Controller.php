@@ -23,13 +23,16 @@ abstract class Controller
 
     private AuthInterface $auth;
 
-    public function setAuth(AuthInterface $auth): void {
+    public function setAuth(AuthInterface $auth): void
+    {
         $this->auth = $auth;
     }
 
-    public function auth(): AuthInterface {
+    public function auth(): AuthInterface
+    {
         return $this->auth;
     }
+
     public function setDatabase(DatabaseInterface $database): void
     {
         $this->database = $database;

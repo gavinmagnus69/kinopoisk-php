@@ -4,21 +4,33 @@ namespace App\Controllers;
 
 use App\Kernel\Controller\Controller;
 
-class LoginController extends Controller {
-    public function index(): void {
+class LoginController extends Controller
+{
+    public function index(): void
+    {
         $this->view('login');
     }
 
-    public function login() {
+    public function login()
+    {
         // dd($this->auth());
 
         $login = $this->request()->input('email');
-        $password = password_hash($this->request()->input('password'), PASSWORD_DEFAULT);
+        $password = $this->request()->input('password');
+        $hash = password_hash($password, PASSWORD_DEFAULT);
 
-        // $this->auth()->attempt($login, $password)
+        $in = $this->auth()->attempt($login, $password);
 
-        $result = $this->db()->first('users', ['email' => $login, 'password' => $password]);
+        if(!$in){
+            $this->redirect('/login');
+        }
         
-        dd($result);
+        $this->redirect('/home');
+    }
+
+    public function logout() {
+        $this->auth()->logout();
+
+        return $this->redirect('/login');
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Kernel\Http;
 
+use App\Kernel\Upload\UploadedFile;
+use App\Kernel\Upload\UploadedFileInterface;
 use App\Kernel\Validator\ValidatorInterface;
 
 class Request implements RequestInterface
@@ -15,17 +17,32 @@ class Request implements RequestInterface
         public readonly array $files,
         public readonly array $cookies
     ) {}
-
+        
     public static function createFromGlobals(): static
     {
         return new static($_GET, $_POST, $_SERVER, $_FILES, $_COOKIE);
     }
-
+    
     public function uri(): string
     {
         return strtok($this->server['REQUEST_URI'], '?');
     }
+    
+    public function file(string $key, $default = null): ?UploadedFileInterface
+    {
 
+        if(! isset($this->files[$key])){
+            return null;
+        }
+
+        return new UploadedFile(
+            $this->files[$key]['name'],
+            $this->files[$key]['type'],
+            $this->files[$key]['tmp_name'],
+            $this->files[$key]['error'],
+            $this->files[$key]['size'],
+        );
+    }
     public function method(): string
     {
         return $this->server['REQUEST_METHOD'];
@@ -57,4 +74,5 @@ class Request implements RequestInterface
     {
         return $this->validator->errors();
     }
+
 }

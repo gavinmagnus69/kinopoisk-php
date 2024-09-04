@@ -30,13 +30,12 @@ class Router implements RouterInterface
 
     public function __construct(
         ViewInterface $view,
-         RequestInterface $request,
+        RequestInterface $request,
         RedirectInterface $redirect,
-         SessionInterface $session,
-          DatabaseInterface $database,
-          AuthInterface $auth
-          )
-    {
+        SessionInterface $session,
+        DatabaseInterface $database,
+        AuthInterface $auth
+    ) {
 
         $this->auth = $auth;
         $this->database = $database;
@@ -67,6 +66,13 @@ class Router implements RouterInterface
             $this->notFound();
 
             return;
+        }
+
+        if($route->hasMiddlewares()) {
+            foreach($route->getMiddlewares() as $middleware){
+                $middleware = new $middleware($this->request, $this->auth, $this->redirect);
+                $middleware->handle();
+            }
         }
 
         if (is_array($route->getAction())) {
