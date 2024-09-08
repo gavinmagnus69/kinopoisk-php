@@ -66,7 +66,7 @@ class Validator implements ValidatorInterface
                 }
                 break;
             case 'confirmed':
-                if ($value !== $this->data["{$key}_confirmation"]) {
+                if ($value != $this->data["{$key}_confirmation"]) {
                     return "Filed $key must be confirmed";
                 }
                 break;

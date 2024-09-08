@@ -23,7 +23,9 @@ class MovieController extends Controller
 
         $file = $this->request()->file('image');
 
-        dd($file->move('movies', 'miku'));
+        $filePath = $file->move('movies');
+
+        dd($this->storage()->url($filePath));
 
         $validation = $this->request()->validate(['name' => ['required', 'min:3', 'max:50']]);
 
