@@ -18,7 +18,7 @@ class Auth implements AuthInterface
     {
         $user = $this->db->first($this->table(), [$this->username() => $username]);
 
-        if(! $user) {
+        if (! $user) {
             return false;
         }
 
@@ -31,19 +31,20 @@ class Auth implements AuthInterface
         return true;
     }
 
-    public function logout(): void {
+    public function logout(): void
+    {
         $this->session->remove($this->sessionField());
     }
 
     public function user(): ?User
     {
-        if(! $this->check()){
+        if (! $this->check()) {
             return null;
         }
 
         $usr = $this->db->first($this->table(), ['id' => $this->session->get($this->sessionField())]);
-        
-        if($usr){
+
+        if ($usr) {
             return new User($usr['id'], $usr[$this->username()], $usr[$this->password()]);
         }
 
@@ -70,8 +71,8 @@ class Auth implements AuthInterface
         return $this->config->get('auth.table', 'users');
     }
 
-    public function sessionField(): string{
+    public function sessionField(): string
+    {
         return $this->config->get('auth.session_field', 'user_id');
     }
-
 }

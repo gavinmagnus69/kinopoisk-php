@@ -1,5 +1,6 @@
 <?php
 $user = $auth->user();
+// dd($user);
 
 ?>
 
@@ -12,7 +13,7 @@ $user = $auth->user();
 </head>
 <body>
 <header>
-    <?php if($auth->check()) {?>
+    <?php if ($auth->check()) {?>
         <h3>User: <?php echo $user->email(); ?></h3>
         <form action="/logout" method="post">
             <button>Logout</button>

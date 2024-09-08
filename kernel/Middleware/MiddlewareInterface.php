@@ -2,9 +2,7 @@
 
 namespace App\Kernel\Middleware;
 
-
-interface MiddlewareInterface {
-
+interface MiddlewareInterface
+{
     public function check(array $middlewares = []): void;
-
-};
+}

@@ -21,14 +21,15 @@ class LoginController extends Controller
 
         $in = $this->auth()->attempt($login, $password);
 
-        if(!$in){
+        if (! $in) {
             $this->redirect('/login');
         }
-        
+
         $this->redirect('/home');
     }
 
-    public function logout() {
+    public function logout()
+    {
         $this->auth()->logout();
 
         return $this->redirect('/login');

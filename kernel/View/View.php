@@ -35,7 +35,6 @@ class View implements ViewInterface
             echo "Component $name not found";
         }
 
-
         extract($this->defaultData());
 
         include_once $component_path;
@@ -46,7 +45,7 @@ class View implements ViewInterface
         return [
             'view' => $this,
             'session' => $this->session,
-            'auth' => $this->auth
+            'auth' => $this->auth,
         ];
     }
 }

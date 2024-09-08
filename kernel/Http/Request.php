@@ -17,21 +17,21 @@ class Request implements RequestInterface
         public readonly array $files,
         public readonly array $cookies
     ) {}
-        
+
     public static function createFromGlobals(): static
     {
         return new static($_GET, $_POST, $_SERVER, $_FILES, $_COOKIE);
     }
-    
+
     public function uri(): string
     {
         return strtok($this->server['REQUEST_URI'], '?');
     }
-    
+
     public function file(string $key, $default = null): ?UploadedFileInterface
     {
 
-        if(! isset($this->files[$key])){
+        if (! isset($this->files[$key])) {
             return null;
         }
 
@@ -43,6 +43,7 @@ class Request implements RequestInterface
             $this->files[$key]['size'],
         );
     }
+
     public function method(): string
     {
         return $this->server['REQUEST_METHOD'];
@@ -74,5 +75,4 @@ class Request implements RequestInterface
     {
         return $this->validator->errors();
     }
-
 }

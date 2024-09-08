@@ -36,11 +36,13 @@ class Route
         return new static($uri, 'POST', $action, $middlewares);
     }
 
-    public function hasMiddlewares(): bool {
+    public function hasMiddlewares(): bool
+    {
         return ! empty($this->middlewares);
     }
 
-    public function getMiddlewares(): array {
+    public function getMiddlewares(): array
+    {
         return $this->middlewares;
     }
 }
