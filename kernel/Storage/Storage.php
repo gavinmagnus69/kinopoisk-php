@@ -13,7 +13,7 @@ class Storage implements StorageInterface {
         
     }
 
-    public function get(string $path): string
+    public function url(string $path): string
     {
 
         $url = $this->config->get('app.url'); 
@@ -21,7 +21,7 @@ class Storage implements StorageInterface {
         
     }
 
-    public function url(string $path): string
+    public function get(string $path): string
     {
 
         return file_get_contents($this->storagePath($path));
