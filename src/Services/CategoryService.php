@@ -30,4 +30,18 @@ class CategoryService {
 
         return $categories;
     }
+
+    public function destroy(int $id) {
+        $this->db->remove('categories', [
+            'id' => $id
+        ]);
+    }
+
+    public function store(string $name): int {
+        return $this->db->insert('categories',
+        [
+            'name' => $name,
+        ]);
+
+    }
 }

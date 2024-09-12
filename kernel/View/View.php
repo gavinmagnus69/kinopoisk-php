@@ -27,7 +27,7 @@ class View implements ViewInterface
         include_once $viewPath;
     }
 
-    public function component(string $name)
+    public function component(string $name, array $data = [])
     {
         $component_path = APP_PATH."/views/Components/$name.php";
 
@@ -35,9 +35,9 @@ class View implements ViewInterface
             echo "Component $name not found";
         }
 
-        extract($this->defaultData());
+        extract(array_merge($this->defaultData(), $data));
 
-        include_once $component_path;
+        include $component_path;
     }
 
     private function defaultData(): array

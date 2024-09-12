@@ -127,5 +127,44 @@ class Database implements DatabaseInterface
         // dd($result);
         return $rows;
     }
+
+    public function remove(string $table, array $conditions): void {
+
+        $where = '';
+
+        if (count($conditions) > 0) {
+            $where = implode(' AND ', array_map(fn ($field) => "$field = ".'"'.$conditions[$field].'"', array_keys($conditions)));
+        }
+
+        $sql = "DELETE FROM $table WHERE $where";
+
+        // dd($sql);
+
+        $result = mysqli_query($this->connection, $sql);
+
+    }
+
+    public function update(string $table, array $values, array $conditions): void {
+        $where = '';
+
+        if (count($conditions) > 0) {
+            $where = implode(' AND ', array_map(fn ($field) => "$field = ".'"'.$conditions[$field].'"', array_keys($conditions)));
+        }
+
+        $rows = '';
+
+        if (count($values) > 0) {
+            $rows = implode(' , ', array_map(fn ($field) => "$field = ".'"'.$values[$field].'"', array_keys($values)));
+        }
+
+        $sql = "UPDATE $table SET $rows WHERE $where";
+
+        // dd($sql);
+
+        $result = mysqli_query($this->connection, $sql);
+
+    }
+
+
     
 }

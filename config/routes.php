@@ -17,5 +17,7 @@ return [
     Route::get('/admen', [AdminController::class, 'index']),
     Route::get('/admen/categories/add', [CategoryController::class, 'create']),
     Route::post('/admen/categories/add', [CategoryController::class, 'store']),
+    Route::post('/admen/categories/destroy', [CategoryController::class, 'destroy']),
+
 
 ];
