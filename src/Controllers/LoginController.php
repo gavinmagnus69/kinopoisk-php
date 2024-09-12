@@ -22,6 +22,7 @@ class LoginController extends Controller
         $in = $this->auth()->attempt($login, $password);
 
         if (! $in) {
+            $this->session()->set('error', 'Invalid login or password');
             $this->redirect('/login');
         }
 

@@ -1,15 +1,21 @@
 
 
- <?php $view->component('start');?>
+ <?php $view->component('start_simple');?>
 
  <main class="form-signin w-100 m-auto">
     <form method="post" action="/login">
+        <?php if($session->has('error')){?>
+            <div class="alert alert-danger">
+                <?php echo $session->getFlash('error');?>
+            </div>
+        <?php }?>
         <div class="d-flex" style="align-items: center; justify-content: space-between">
             <h2>Вход</h2>
             <a href="/home" class="d-flex align-items-center mb-5 mb-lg-0 text-white text-decoration-none">
                 <h5 class="m-0">Кинопоиск <span class="badge bg-warning warn__badge">Lite</span></h5>
             </a>
         </div>
+
 
         <div class="form-floating mt-3">
             <input type="email" class="form-control" id="floatingInput"  name="email" placeholder="name@areaweb.su"> <label for="floatingInput">E-mail</label>
@@ -23,4 +29,4 @@
 </main>
 
 
-<?php $view->component('end'); ?>
+<?php $view->component('end_simple'); ?>
