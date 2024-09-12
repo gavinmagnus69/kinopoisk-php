@@ -1,6 +1,6 @@
 
 
- <?php $view->component('start');?>
+ <?php $view->component('start'); ?>
 
 <main>
 

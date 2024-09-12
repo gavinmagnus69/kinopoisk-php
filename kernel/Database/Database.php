@@ -102,4 +102,30 @@ class Database implements DatabaseInterface
         //$this->pdo = new \PDO("$driver:host=$host;port=$port;dbname=$database;charset=$charset", $username, $password);
 
     }
+
+    public function get(string $table, array $conditions): array {
+        $where = '';
+
+        if (count($conditions) > 0) {
+            $where = implode(' AND ', array_map(fn ($field) => "$field = ".'"'.$conditions[$field].'"', array_keys($conditions)));
+        }
+
+        $sql = "SELECT * FROM $table WHERE $where";
+
+        if($conditions == []) {
+            $sql = "SELECT * FROM $table";
+        }
+        // dd($sql);
+
+        $result = mysqli_query($this->connection, $sql);
+
+        //gets first row
+        // $row = mysqli_fetch_assoc($result);
+        $rows = mysqli_fetch_all($result);
+
+        // dd($row);
+        // dd($result);
+        return $rows;
+    }
+    
 }

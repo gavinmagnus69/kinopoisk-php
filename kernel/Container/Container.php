@@ -45,8 +45,6 @@ class Container
 
     public readonly StorageInterface $storage;
 
-
-
     public function __construct()
     {
         $this->registerServices();
@@ -73,7 +71,7 @@ class Container
 
         $this->view = new View($this->session, $this->auth);
 
-        $this->storage = new Storage($this->config); 
+        $this->storage = new Storage($this->config);
 
         $this->router = new Router(
             $this->view,

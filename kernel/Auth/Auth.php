@@ -45,7 +45,7 @@ class Auth implements AuthInterface
         $usr = $this->db->first($this->table(), ['id' => $this->session->get($this->sessionField())]);
 
         if ($usr) {
-            return new User($usr['id'], $usr[$this->username()], $usr[$this->password()]);
+            return new User($usr['id'], $usr[$this->username()], $usr[$this->password()], $usr['name']);
         }
 
         return null;

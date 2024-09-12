@@ -1,6 +1,6 @@
 
 
- <?php $view->component('start');?>
+ <?php $view->component('start'); ?>
 
  <main>
     <div class="container">
@@ -14,12 +14,12 @@
             <div class="row g-2">
                 <div class="col-md">
                     <div class="form-floating">
-                        <input type="text" class="form-control <?php echo $session->has('name')? 'is-invalid' : ''; ?>" id="name" name="name" placeholder="Иван Иванов">
+                        <input type="text" class="form-control <?php echo $session->has('name') ? 'is-invalid' : ''; ?>" id="name" name="name" placeholder="Иван Иванов">
                         <label for="name">Имя</label>
                         
-                        <?php if($session->has('name')) {?>
+                        <?php if ($session->has('name')) {?>
                         <div id="name" class="invalid-feedback">
-                            <?php echo $session->getFlash('name')[0];?>
+                            <?php echo $session->getFlash('name')[0]; ?>
                         </div>
                         <?php }?>
                     </div>
@@ -28,11 +28,11 @@
             <div class="row g-2">
                 <div class="col-md">
                     <div class="form-floating">
-                        <input type="email" class="form-control  <?php echo $session->has('email')? 'is-invalid' : ''; ?>" id="email" name="email" placeholder="name@areaweb.su">
+                        <input type="email" class="form-control  <?php echo $session->has('email') ? 'is-invalid' : ''; ?>" id="email" name="email" placeholder="name@areaweb.su">
                         <label for="email">E-mail</label>
-                        <?php if($session->has('email')) {?>
+                        <?php if ($session->has('email')) {?>
                         <div id="email" class="invalid-feedback">
-                            <?php echo $session->getFlash('email')[0];?>
+                            <?php echo $session->getFlash('email')[0]; ?>
                         </div>
                         <?php }?>
                     </div>
@@ -41,11 +41,11 @@
             <div class="row g-2">
                 <div class="col-md">
                     <div class="form-floating">
-                        <input type="password" class="form-control  <?php echo $session->has('password')? 'is-invalid' : ''; ?>" id="password" name="password"placeholder="*********">
+                        <input type="password" class="form-control  <?php echo $session->has('password') ? 'is-invalid' : ''; ?>" id="password" name="password"placeholder="*********">
                         <label for="password">Пароль</label>
-                        <?php if($session->has('password')) {?>
+                        <?php if ($session->has('password')) {?>
                         <div id="password" class="invalid-feedback">
-                            <?php echo $session->getFlash('password')[0];?>
+                            <?php echo $session->getFlash('password')[0]; ?>
                         </div>
                         <?php }?>
                     </div>

@@ -26,11 +26,13 @@ abstract class Controller
 
     private StorageInterface $storage;
 
-    public function setStorage(StorageInterface $storage): void {
+    public function setStorage(StorageInterface $storage): void
+    {
         $this->storage = $storage;
     }
 
-    public function storage(): StorageInterface {
+    public function storage(): StorageInterface
+    {
         return $this->storage;
     }
 
@@ -89,8 +91,8 @@ abstract class Controller
         $this->redirect->to($url);
     }
 
-    public function view(string $name)
+    public function view(string $name, array $data = [])
     {
-        $this->view->page($name);
+        $this->view->page($name, $data);
     }
 }

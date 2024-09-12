@@ -3,8 +3,6 @@
 return [
     'name' => 'Movie app',
 
-    'url' => 'http://localhost'
-
-
+    'url' => 'http://localhost',
 
 ];

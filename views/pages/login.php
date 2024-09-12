@@ -1,12 +1,12 @@
 
 
- <?php $view->component('start_simple');?>
+ <?php $view->component('start_simple'); ?>
 
  <main class="form-signin w-100 m-auto">
     <form method="post" action="/login">
-        <?php if($session->has('error')){?>
+        <?php if ($session->has('error')) {?>
             <div class="alert alert-danger">
-                <?php echo $session->getFlash('error');?>
+                <?php echo $session->getFlash('error'); ?>
             </div>
         <?php }?>
         <div class="d-flex" style="align-items: center; justify-content: space-between">

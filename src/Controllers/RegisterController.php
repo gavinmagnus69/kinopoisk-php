@@ -18,8 +18,8 @@ class RegisterController extends Controller
         $validation = $this->request()->validate([
             'email' => ['required', 'email'],
             'password' => ['required', 'min:8', 'confirmed'],
-            'name'=> ['required', 'min:3', 'max:255'],
-            'password_confirmation' => ['required']
+            'name' => ['required', 'min:3', 'max:255'],
+            'password_confirmation' => ['required'],
         ]);
 
         if (! $validation) {

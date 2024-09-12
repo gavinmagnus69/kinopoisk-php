@@ -21,7 +21,7 @@ class UploadedFile implements UploadedFileInterface
             mkdir($storagePath, 0777, true);
         }
 
-        if($filename != null){
+        if ($filename != null) {
             $filename = $filename.'.'.$this->getExtension();
         }
         $filename = $filename ?? $this->randomFilename();

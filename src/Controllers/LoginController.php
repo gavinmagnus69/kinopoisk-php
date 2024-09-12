@@ -33,6 +33,6 @@ class LoginController extends Controller
     {
         $this->auth()->logout();
 
-        return $this->redirect('/login');
+        return $this->redirect('/home');
     }
 }
