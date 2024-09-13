@@ -6,9 +6,9 @@ use App\Kernel\Controller\Controller;
 
 class MovieController extends Controller
 {
-    public function index(): void
+    public function create(): void
     {
-        $this->view('movies');
+        $this->view('admin/movies/add');
     }
 
     public function add(): void

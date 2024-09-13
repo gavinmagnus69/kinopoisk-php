@@ -103,7 +103,8 @@ class Database implements DatabaseInterface
 
     }
 
-    public function get(string $table, array $conditions): array {
+    public function get(string $table, array $conditions): array
+    {
         $where = '';
 
         if (count($conditions) > 0) {
@@ -112,7 +113,7 @@ class Database implements DatabaseInterface
 
         $sql = "SELECT * FROM $table WHERE $where";
 
-        if($conditions == []) {
+        if ($conditions == []) {
             $sql = "SELECT * FROM $table";
         }
         // dd($sql);
@@ -128,7 +129,8 @@ class Database implements DatabaseInterface
         return $rows;
     }
 
-    public function remove(string $table, array $conditions): void {
+    public function remove(string $table, array $conditions): void
+    {
 
         $where = '';
 
@@ -144,7 +146,8 @@ class Database implements DatabaseInterface
 
     }
 
-    public function update(string $table, array $values, array $conditions): void {
+    public function update(string $table, array $values, array $conditions): void
+    {
         $where = '';
 
         if (count($conditions) > 0) {
@@ -164,7 +167,4 @@ class Database implements DatabaseInterface
         $result = mysqli_query($this->connection, $sql);
 
     }
-
-
-    
 }

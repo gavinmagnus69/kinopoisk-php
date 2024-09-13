@@ -4,6 +4,7 @@ use App\Controllers\AdminController;
 use App\Controllers\CategoryController;
 use App\Controllers\HomeController;
 use App\Controllers\LoginController;
+use App\Controllers\MovieController;
 use App\Controllers\RegisterController;
 use App\Kernel\Router\Route;
 
@@ -18,6 +19,10 @@ return [
     Route::get('/admen/categories/add', [CategoryController::class, 'create']),
     Route::post('/admen/categories/add', [CategoryController::class, 'store']),
     Route::post('/admen/categories/destroy', [CategoryController::class, 'destroy']),
+    Route::post('/admen/categories/update', [CategoryController::class, 'update']),
+    Route::get('/admen/categories/update', [CategoryController::class, 'edit']),
+    Route::get('/admen/movies/add', [MovieController::class, 'create']),
+
 
 
 ];
